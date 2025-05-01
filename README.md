@@ -2,234 +2,107 @@
 
 A real-time cryptocurrency tracking application with interactive charts and operational metrics.
 
-## Features
+## Quick Start Guide
 
-- Real-time cryptocurrency price tracking
-- Interactive price charts
-- Operational metrics dashboard
-- SWOT analysis of tools used
-- Secure login system
-- AWS infrastructure as code
+### Prerequisites
+- Python 3 (for local server)
+- Modern web browser (Chrome, Firefox, Safari, or Edge)
 
-## Prerequisites
+### Running the Application
 
-### AWS Account Setup
-1. Create an AWS account at https://aws.amazon.com/
-2. Set up an IAM user with AdministratorAccess:
-   - Go to IAM Console
-   - Create new user
-   - Select "Attach existing policies directly"
-   - Choose "AdministratorAccess"
-   - Save the access key ID and secret access key
-
-### Local Environment Setup
-1. Install AWS CLI:
-   ```bash
-   # macOS
-   brew install awscli
-   
-   # Windows
-   winget install AWS.AWSCLI
-   
-   # Linux
-   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-   unzip awscliv2.zip
-   sudo ./aws/install
-   ```
-
-2. Configure AWS CLI:
-   ```bash
-   aws configure
-   # Enter your AWS Access Key ID
-   # Enter your AWS Secret Access Key
-   # Enter your preferred region (e.g., us-east-1)
-   # Enter output format (json)
-   ```
-
-3. Install Terraform:
-   ```bash
-   # macOS
-   brew install terraform
-   
-   # Windows
-   winget install HashiCorp.Terraform
-   
-   # Linux
-   curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-   sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-   sudo apt-get update && sudo apt-get install terraform
-   ```
-
-4. Install Node.js (for local development):
-   ```bash
-   # Using nvm (recommended)
-   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-   nvm install 16
-   nvm use 16
-   ```
-
-## Infrastructure Setup
-
-### AWS Resources
-The project uses the following AWS services:
-- S3 bucket for static website hosting
-- CloudFront distribution for CDN
-- Lambda function for price updates
-- CloudWatch for scheduling and monitoring
-- IAM roles and policies
-- Secrets Manager for API keys
-
-### Deployment Steps
-
-1. Clone the repository:
+1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/crypto-compass.git
    cd crypto-compass
    ```
 
-2. Create a CoinGecko API key:
-   - Go to https://www.coingecko.com/en/api
-   - Sign up for a free account
-   - Generate an API key
+2. **Start the local server**
+   You have two options:
 
-3. Create a `terraform.tfvars` file:
-   ```bash
-   cat > terraform.tfvars << EOL
-   coingecko_api_key = "your-api-key-here"
-   region = "us-east-1"
-   environment = "production"
-   EOL
-   ```
-
-4. Initialize Terraform:
-   ```bash
-   terraform init
-   ```
-
-5. Review the planned changes:
-   ```bash
-   terraform plan
-   ```
-
-6. Apply the infrastructure:
-   ```bash
-   terraform apply
-   ```
-
-7. Deploy the website:
-   ```bash
-   # Install dependencies
-   npm install
-   
-   # Build the project
-   npm run build
-   
-   # Deploy to S3
-   aws s3 sync dist/ s3://crypto-compass-static-website --exclude "*.tf*" --exclude ".git/*"
-   ```
-
-8. Verify the deployment:
-   - Check the CloudFront distribution URL (output from terraform apply)
-   - Verify the Lambda function is running in AWS Console
-   - Check CloudWatch logs for any errors
-
-### Post-Deployment Tasks
-
-1. Set up monitoring:
-   - Go to CloudWatch Console
-   - Create a dashboard for:
-     - Lambda invocation metrics
-     - API Gateway metrics
-     - CloudFront metrics
-
-2. Configure alerts:
-   - Set up CloudWatch alarms for:
-     - Lambda errors
-     - High latency
-     - API rate limits
-
-3. Security hardening:
-   - Enable AWS WAF on CloudFront
-   - Set up AWS Shield for DDoS protection
-   - Configure AWS Config for compliance monitoring
-
-## Local Development
-
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Start the development server:
+   Option 1 - Using npm:
    ```bash
    npm start
    ```
 
-3. Access the application:
-   - Open http://localhost:3000
-   - Use test credentials:
-     - Username: admin
-     - Password: admin123
+   Option 2 - Using Python directly:
+   ```bash
+   python3 -m http.server 8000
+   ```
 
-## Tool Comparison
+3. **Access the application**
+   Open your web browser and go to:
+   ```
+   http://localhost:8000
+   ```
 
-The project uses several tools and technologies:
+4. **Login credentials**
+   Use one of these test accounts:
+   - Username: `admin`, Password: `admin123`
+   - Username: `user1`, Password: `password1`
+   - Username: `user2`, Password: `password2`
 
-1. **Frontend:**
-   - HTML/CSS/JavaScript
-   - Chart.js for visualizations
-   - Session Storage for authentication
+## Features
 
-2. **Backend:**
-   - AWS Lambda for price updates
-   - CoinGecko API for cryptocurrency data
+- Real-time cryptocurrency price tracking
+- Interactive price charts
+- Operational metrics dashboard
+- SWOT analysis of tools
+- Secure login system
 
-3. **Infrastructure:**
-   - AWS S3 for static hosting
-   - CloudFront for CDN
-   - Terraform for infrastructure as code
+## Project Structure
 
-A detailed SWOT analysis of these tools is available in the application's SWOT Analysis page.
+```
+crypto-compass/
+├── index.html          # Login page
+├── coinsMain.html      # Main dashboard
+├── swot.html           # SWOT analysis page
+├── learningSpace.html  # Educational resources
+├── style.css          # Main styles
+├── login.js           # Login functionality
+├── images/            # Image assets
+└── package.json       # Project configuration
+```
 
-## Security Considerations
+## Development
 
-- API keys are stored securely in AWS Secrets Manager
-- HTTPS enforced through CloudFront
-- Rate limiting implemented for API calls
-- Session-based authentication
-- Regular security audits recommended
-- Implement AWS WAF rules
-- Enable AWS Shield protection
+### Local Development
+1. Start the development server:
+   ```bash
+   npm start
+   ```
+2. Open `http://localhost:8000` in your browser
+3. Make changes to the files
+4. Refresh the browser to see changes
 
-## Monitoring
-
-The application includes:
-- Real-time operational metrics
-- API call tracking
-- System uptime monitoring
-- Data freshness indicators
-- CloudWatch dashboards
-- Lambda function metrics
-- API Gateway metrics
+### Testing
+- The application uses the CoinGecko API for real-time data
+- Test the chart functionality by clicking on different cryptocurrencies
+- Check the operational metrics dashboard
+- Verify the SWOT analysis page
 
 ## Troubleshooting
 
-Common issues and solutions:
+### Common Issues
 
-1. **Lambda Function Errors**
-   - Check CloudWatch logs
-   - Verify IAM permissions
-   - Check environment variables
+1. **Server won't start**
+   - Make sure Python 3 is installed
+   - Check if port 8000 is available
+   - Try a different port: `python3 -m http.server 8080`
 
-2. **S3 Deployment Issues**
-   - Verify bucket permissions
-   - Check CORS configuration
-   - Validate file paths
+2. **Charts not updating**
+   - Check browser console for errors
+   - Verify internet connection
+   - Ensure CoinGecko API is accessible
 
-3. **CloudFront Issues**
-   - Check distribution status
-   - Verify origin settings
-   - Clear cache if needed
+3. **Login issues**
+   - Clear browser cache
+   - Try different test credentials
+   - Check browser console for errors
+
+### Getting Help
+- Check the browser console for error messages
+- Verify all files are in the correct directory
+- Ensure you're using the correct URL (http://localhost:8000)
 
 ## Contributing
 
@@ -239,10 +112,6 @@ Common issues and solutions:
 4. Push to the branch
 5. Create a Pull Request
 
-## Support
+## License
 
-For issues and support:
-- Create GitHub issues
-- Contact the development team
-- Check AWS documentation
-- Review CloudWatch logs
+This project is licensed under the MIT License - see the LICENSE file for details.
