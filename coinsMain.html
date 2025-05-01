@@ -6,8 +6,32 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div id = "stocks" class="container"></div>
+    <div class="metrics-container">
+        <div class="metric-card">
+            <h3>Active Users</h3>
+            <div class="value" id="activeUsers">0</div>
+            <div class="label">Last 24 hours</div>
+        </div>
+        <div class="metric-card">
+            <h3>API Calls</h3>
+            <div class="value" id="apiCalls">0</div>
+            <div class="label">Today's requests</div>
+        </div>
+        <div class="metric-card">
+            <h3>System Uptime</h3>
+            <div class="value" id="uptime">100%</div>
+            <div class="label">Last 7 days</div>
+        </div>
+        <div class="metric-card">
+            <h3>Data Freshness</h3>
+            <div class="value" id="dataAge">0s</div>
+            <div class="label">Last update</div>
+        </div>
+    </div>
+
+    <div id="stocks" class="container"></div>
     <canvas id="chart" width="400" height="400"></canvas>
+    
     <button style="position: fixed; top: 10px; right: 10px; background-color: #4CAF50;
     color: white; padding: 10px 20px;
     font-size: 18px;
@@ -16,17 +40,51 @@
     <a href="learningSpace.html" class="button" style="position: fixed; top: 85px; right: 10px; background-color: #4CAF50;
     color: white; padding: 10px 20px; font-size: 18px; border-radius: 5px;" id="learn">Learning Space</a>
 
-    <a href="index.html" class="button" style="position: fixed; top: 160px; right: 10px; background-color: #4CAF50; 
+    <a href="swot.html" class="button" style="position: fixed; top: 160px; right: 10px; background-color: #4CAF50;
+    color: white; padding: 10px 20px; font-size: 18px; border-radius: 5px;" id="swot">SWOT Analysis</a>
+
+    <a href="index.html" class="button" style="position: fixed; top: 235px; right: 10px; background-color: #4CAF50; 
     color: white; padding: 10px 20px; font-size: 18px; border-radius: 5px;" id="logout">Logout</a>
 
-
-
     <script>
+        // Check if user is logged in
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'index.html';
+        }
+
+        // Dashboard metrics
+        let apiCallCount = 0;
+        const startTime = Date.now();
+
+        function updateMetrics() {
+            // Simulate active users
+            document.getElementById('activeUsers').textContent = Math.floor(Math.random() * 1000);
+            
+            // Show API calls
+            document.getElementById('apiCalls').textContent = apiCallCount;
+            
+            // Calculate uptime
+            const uptime = ((Date.now() - startTime) / (7 * 24 * 60 * 60 * 1000)) * 100;
+            document.getElementById('uptime').textContent = `${Math.min(100, uptime).toFixed(2)}%`;
+            
+            // Update data freshness
+            const lastUpdate = new Date();
+            document.getElementById('dataAge').textContent = '0s';
+        }
+
+        // Update metrics every 5 seconds
+        setInterval(updateMetrics, 5000);
+        updateMetrics();
+
         const container = document.querySelector('.container');
         const chartCanvas = document.getElementById('chart');
         const coins = ['bitcoin', 'tether', 'ethereum', 'litecoin', 'cardano', 'dogecoin'];
 
+        let currentChart = null; // Add this line to track the current chart
+
         function fetchCoinData(coin) {
+            apiCallCount++;
             document.getElementById("stocks").hidden=true;
             document.getElementById("learn").hidden=true;
             document.getElementById("logout").hidden=true;
@@ -50,24 +108,33 @@
                 })
                 .catch(error => console.error(`Error fetching ${coin} data: ${error}`));
         }
-        
-
 
         function updateChart(coin) {
-    fetchCoinData(coin).then(chartData => {
-        new Chart(chartCanvas, {
-            type: 'line',
-            data: chartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            },
-        });
-        
-    });
-}
+            fetchCoinData(coin).then(chartData => {
+                // Destroy the existing chart if it exists
+                if (currentChart) {
+                    currentChart.destroy();
+                }
+                
+                // Create new chart
+                currentChart = new Chart(chartCanvas, {
+                    type: 'line',
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    },
+                });
+            });
+        }
 
         function renderCoinData() {
+            apiCallCount++;
             fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true')
                 .then(response => response.json())
                 .then(data => {
@@ -99,8 +166,6 @@
                 })
                 .catch(error => console.error(`Error fetching coin data: ${error}`));
         }
-       
-            
 
         renderCoinData();
     </script>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Compass - SWOT Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .swot-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .swot-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .swot-section h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .swot-section h3 {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+        .swot-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .swot-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .swot-section li:last-child {
+            border-bottom: none;
+        }
+        .back-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="swot-container">
+        <h1>SWOT Analysis - Crypto Compass Tools</h1>
+        <div class="swot-grid">
+            <div class="swot-section">
+                <h2>CoinGecko API</h2>
+                <h3>Strengths</h3>
+                <ul>
+                    <li>Free to use with generous rate limits</li>
+                    <li>Comprehensive cryptocurrency data</li>
+                    <li>Well-documented API</li>
+                    <li>Real-time price updates</li>
+                    <li>Historical data available</li>
+                </ul>
+                <h3>Weaknesses</h3>
+                <ul>
+                    <li>Rate limits may be restrictive for high-traffic applications</li>
+                    <li>No official support for enterprise users</li>
+                    <li>Limited customization options</li>
+                    <li>Dependent on external service availability</li>
+                </ul>
+            </div>
+            <div class="swot-section">
+                <h2>Chart.js</h2>
+                <h3>Strengths</h3>
+                <ul>
+                    <li>Easy to implement</li>
+                    <li>Responsive design</li>
+                    <li>Interactive charts</li>
+                    <li>Good documentation</li>
+                    <li>Active community support</li>
+                </ul>
+                <h3>Weaknesses</h3>
+                <ul>
+                    <li>Limited advanced chart types</li>
+                    <li>Performance issues with large datasets</li>
+                    <li>Basic styling options</li>
+                    <li>No built-in data preprocessing</li>
+                </ul>
+            </div>
+            <div class="swot-section">
+                <h2>Session Storage</h2>
+                <h3>Strengths</h3>
+                <ul>
+                    <li>Simple to implement</li>
+                    <li>No server-side storage needed</li>
+                    <li>Fast access to data</li>
+                    <li>Built into browsers</li>
+                </ul>
+                <h3>Weaknesses</h3>
+                <ul>
+                    <li>Limited storage capacity</li>
+                    <li>Data lost on browser close</li>
+                    <li>No server-side persistence</li>
+                    <li>Security concerns with sensitive data</li>
+                </ul>
+            </div>
+            <div class="swot-section">
+                <h2>HTML/CSS/JavaScript Stack</h2>
+                <h3>Strengths</h3>
+                <ul>
+                    <li>Universal browser support</li>
+                    <li>Large developer community</li>
+                    <li>Extensive documentation</li>
+                    <li>Easy to learn and implement</li>
+                    <li>Fast development cycle</li>
+                </ul>
+                <h3>Weaknesses</h3>
+                <ul>
+                    <li>Security vulnerabilities</li>
+                    <li>Performance limitations</li>
+                    <li>Browser compatibility issues</li>
+                    <li>Limited offline capabilities</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <a href="coinsMain.html" class="back-button">Back to Dashboard</a>
+</body>
+</html> 

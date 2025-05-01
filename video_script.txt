@@ -1,0 +1,102 @@
+Video Script: Crypto Compass Project Walkthrough
+=============================================
+
+[0:00 - 0:30] Introduction
+------------------
+"Welcome to the Crypto Compass project walkthrough! In this video, we'll explore a modern cryptocurrency tracking platform designed specifically for college students and young adults. We'll cover everything from the user interface to the infrastructure setup, giving you a complete understanding of how the application works."
+
+[0:30 - 1:30] Project Overview
+------------------
+"Let's start with what Crypto Compass is all about. This is a web application that provides real-time cryptocurrency tracking and educational resources. The platform is built with three main components:
+1. A real-time price tracking dashboard
+2. Interactive charts for price analysis
+3. A learning space for cryptocurrency education
+
+The target audience is college-aged individuals and young adults, making it perfect for those new to cryptocurrency or looking to expand their knowledge."
+
+[1:30 - 2:30] User Interface Walkthrough
+------------------
+"Let's take a look at the user interface. First, we have the login page with a clean, modern design. Users can log in with pre-configured credentials. Once logged in, they're taken to the main dashboard which shows:
+- Real-time cryptocurrency prices
+- Price change indicators
+- Interactive charts
+- Operational metrics
+
+The interface is designed to be intuitive and user-friendly, with clear navigation and responsive design."
+
+[2:30 - 3:30] Features Demonstration
+------------------
+"Now, let's explore the key features. When you click on any cryptocurrency, you'll see an interactive chart showing its price history. The chart updates in real-time and allows for different time period views.
+
+The operational metrics dashboard shows:
+- Active users
+- API call statistics
+- System uptime
+- Data freshness
+
+We also have a SWOT analysis page that provides insights into the tools and technologies used in the project."
+
+[3:30 - 4:30] Technical Architecture
+------------------
+"Let's dive into the technical architecture. The frontend is built with vanilla JavaScript and modern CSS, making it lightweight and fast. The backend uses AWS Lambda functions for serverless computing, which means it scales automatically based on demand.
+
+Data flows from the CoinGecko API through our Lambda functions to the frontend, where it's displayed in real-time. This architecture ensures high performance and reliability."
+
+[4:30 - 5:30] Infrastructure Setup
+------------------
+"Now, let's look at how the infrastructure is set up. We use Terraform to define our AWS infrastructure as code. This includes:
+- S3 bucket for static website hosting
+- CloudFront for content delivery
+- Lambda functions for backend processing
+- CloudWatch for monitoring
+
+The infrastructure is designed to be scalable, secure, and cost-effective."
+
+[5:30 - 6:30] Security Features
+------------------
+"Security is a top priority. The application implements:
+- Secure user authentication
+- HTTPS encryption
+- API key management
+- DDoS protection
+- Regular security audits
+
+All sensitive data is encrypted, and we use AWS security services to protect the infrastructure."
+
+[6:30 - 7:30] Monitoring and Operations
+------------------
+"Let's look at how we monitor the application. We use AWS CloudWatch to track:
+- System performance
+- Error rates
+- User activity
+- API usage
+
+We've set up automated alerts for any issues, ensuring quick response times and high availability."
+
+[7:30 - 8:30] Development Process
+------------------
+"The development process follows best practices:
+- Version control with Git
+- Automated testing
+- Continuous integration
+- Code reviews
+- Performance optimization
+
+This ensures high code quality and reliable deployments."
+
+[8:30 - 9:30] Deployment Guide
+------------------
+"To deploy the application:
+1. Set up an AWS account
+2. Install Terraform and AWS CLI
+3. Configure the environment
+4. Deploy the infrastructure
+5. Upload the application files
+
+The README provides detailed instructions for each step."
+
+[9:30 - 10:00] Conclusion
+------------------
+"Crypto Compass is a comprehensive cryptocurrency tracking platform that combines real-time data with educational resources. The infrastructure is built for scalability and security, making it a reliable tool for cryptocurrency enthusiasts.
+
+Thank you for watching! If you have any questions, please check the project documentation or reach out to the development team." 
