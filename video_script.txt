@@ -10,7 +10,7 @@ Video Script: Crypto Compass Project Walkthrough
 "Let's start with what Crypto Compass is all about. This is a web application that provides real-time cryptocurrency tracking and educational resources. The platform is built with three main components:
 1. A real-time price tracking dashboard
 2. Interactive charts for price analysis
-3. A learning space for cryptocurrency education
+3. A learning space for cryptocurrency education for all to learn
 
 The target audience is college-aged individuals and young adults, making it perfect for those new to cryptocurrency or looking to expand their knowledge."
 
