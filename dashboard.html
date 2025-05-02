@@ -8,8 +8,8 @@
     <div class="metrics-container">
         <div class="metric-card">
             <h3>Active Users</h3>
-            <div class="value" id="activeUsers">0</div>
-            <div class="label">Last 24 hours</div>
+            <div class="value" id="activeUsers">1</div>
+            <div class="label">Current User</div>
         </div>
         <div class="metric-card">
             <h3>API Calls</h3>
@@ -38,28 +38,37 @@
             window.location.href = 'index.html';
         }
 
-        // Dashboard metrics
-        let apiCallCount = 0;
-        const startTime = Date.now();
+        // Initialize metrics from session storage or create new ones
+        const metrics = {
+            apiCalls: parseInt(sessionStorage.getItem('apiCalls')) || 0,
+            startTime: parseInt(sessionStorage.getItem('startTime')) || Date.now(),
+            lastUpdate: parseInt(sessionStorage.getItem('lastUpdate')) || Date.now()
+        };
+
+        // Save initial state
+        sessionStorage.setItem('startTime', metrics.startTime);
+        sessionStorage.setItem('apiCalls', metrics.apiCalls);
+        sessionStorage.setItem('lastUpdate', metrics.lastUpdate);
 
         function updateMetrics() {
-            // Simulate active users
-            document.getElementById('activeUsers').textContent = Math.floor(Math.random() * 1000);
+            const now = Date.now();
             
             // Show API calls
-            document.getElementById('apiCalls').textContent = apiCallCount;
+            document.getElementById('apiCalls').textContent = metrics.apiCalls;
             
-            // Calculate uptime
-            const uptime = ((Date.now() - startTime) / (7 * 24 * 60 * 60 * 1000)) * 100;
+            // Calculate real uptime
+            const uptime = ((now - metrics.startTime) / (7 * 24 * 60 * 60 * 1000)) * 100;
             document.getElementById('uptime').textContent = `${Math.min(100, uptime).toFixed(2)}%`;
             
-            // Update data freshness
-            const lastUpdate = new Date();
-            document.getElementById('dataAge').textContent = '0s';
+            // Calculate data freshness
+            const timeSinceLastUpdate = Math.floor((now - metrics.lastUpdate) / 1000);
+            const minutes = Math.floor(timeSinceLastUpdate / 60);
+            const seconds = timeSinceLastUpdate % 60;
+            document.getElementById('dataAge').textContent = `${minutes}m ${seconds}s`;
         }
 
-        // Update metrics every 5 seconds
-        setInterval(updateMetrics, 5000);
+        // Update metrics every second for more accurate data freshness
+        setInterval(updateMetrics, 1000);
         updateMetrics();
     </script>
 </body>

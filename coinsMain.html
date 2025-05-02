@@ -44,6 +44,12 @@
             document.getElementById("learn").hidden=true;
             document.getElementById("dashboard").hidden=true;
             document.getElementById("logout").hidden=true;
+            
+            // Update API call count
+            const apiCalls = parseInt(sessionStorage.getItem('apiCalls') || '0') + 1;
+            sessionStorage.setItem('apiCalls', apiCalls);
+            sessionStorage.setItem('lastUpdate', Date.now());
+            
             return fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=7`)
                 .then(response => response.json())
                 .then(data => {
@@ -90,6 +96,11 @@
         }
 
         function renderCoinData() {
+            // Update API call count
+            const apiCalls = parseInt(sessionStorage.getItem('apiCalls') || '0') + 1;
+            sessionStorage.setItem('apiCalls', apiCalls);
+            sessionStorage.setItem('lastUpdate', Date.now());
+            
             fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Clitecoin%2Ccardano%2Cdogecoin&vs_currencies=usd&include_24hr_change=true')
                 .then(response => response.json())
                 .then(data => {
