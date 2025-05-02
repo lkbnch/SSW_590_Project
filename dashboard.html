@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Compass - Operational Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="metrics-container">
+        <div class="metric-card">
+            <h3>Active Users</h3>
+            <div class="value" id="activeUsers">0</div>
+            <div class="label">Last 24 hours</div>
+        </div>
+        <div class="metric-card">
+            <h3>API Calls</h3>
+            <div class="value" id="apiCalls">0</div>
+            <div class="label">Today's requests</div>
+        </div>
+        <div class="metric-card">
+            <h3>System Uptime</h3>
+            <div class="value" id="uptime">100%</div>
+            <div class="label">Last 7 days</div>
+        </div>
+        <div class="metric-card">
+            <h3>Data Freshness</h3>
+            <div class="value" id="dataAge">0s</div>
+            <div class="label">Last update</div>
+        </div>
+    </div>
+
+    <a href="coinsMain.html" class="button" style="position: fixed; top: 10px; right: 10px; background-color: #4CAF50;
+    color: white; padding: 10px 20px; font-size: 18px; border-radius: 5px;">Back to Main</a>
+
+    <script>
+        // Check if user is logged in
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'index.html';
+        }
+
+        // Dashboard metrics
+        let apiCallCount = 0;
+        const startTime = Date.now();
+
+        function updateMetrics() {
+            // Simulate active users
+            document.getElementById('activeUsers').textContent = Math.floor(Math.random() * 1000);
+            
+            // Show API calls
+            document.getElementById('apiCalls').textContent = apiCallCount;
+            
+            // Calculate uptime
+            const uptime = ((Date.now() - startTime) / (7 * 24 * 60 * 60 * 1000)) * 100;
+            document.getElementById('uptime').textContent = `${Math.min(100, uptime).toFixed(2)}%`;
+            
+            // Update data freshness
+            const lastUpdate = new Date();
+            document.getElementById('dataAge').textContent = '0s';
+        }
+
+        // Update metrics every 5 seconds
+        setInterval(updateMetrics, 5000);
+        updateMetrics();
+    </script>
+</body>
+</html> 
